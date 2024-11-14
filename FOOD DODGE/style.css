@@ -1,32 +1,36 @@
-/* CSS - style.css */
+/* General Reset */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+/* Body Styling */
 body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    font-family: Arial, sans-serif;
+    height: 100dvh; /* Dynamic viewport height */
+    font-family: 'Arial', sans-serif;
     background: radial-gradient(circle, #1d1e22, #232526);
-    overflow: hidden;
+    overflow: hidden; /* Prevents scrolling */
 }
 
+/* Game Container */
 .game {
     position: relative;
     width: 100%;
-    max-width: 360px;
-    height: 80vh;
-    background: #2b2d31;
+    max-width: 480px;
+    height: calc(100vh - env(safe-area-inset-bottom)); /* Adjusts for navigation buttons */
+    background: linear-gradient(135deg, #2b2d31, #3b3e44);
     overflow: hidden;
     border-radius: 15px;
     border: 3px solid #f0f0f0;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    padding-bottom: env(safe-area-inset-bottom); /* Adds space for navigation buttons */
 }
 
+/* Player Styling */
 #player {
     position: absolute;
     width: 40px;
@@ -36,8 +40,10 @@ body {
     bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
+    transition: bottom 0.3s; /* Smooth adjustment for responsive design */
 }
 
+/* Food and Boom Styling */
 .food, .boom {
     position: absolute;
     width: 30px;
@@ -48,6 +54,7 @@ body {
     border-radius: 50%;
 }
 
+/* Score Styling */
 #score {
     position: absolute;
     top: 10px;
@@ -57,6 +64,7 @@ body {
     font-weight: bold;
 }
 
+/* Game Over and Start Screen */
 #game-over, #start-screen {
     position: absolute;
     top: 50%;
@@ -66,8 +74,8 @@ body {
     color: #fff;
     padding: 20px;
     border-radius: 10px;
-    background-color: rgba(43, 45, 49, 0.9);
-    width: 80%; /* Adjusted for mobile */
+    background-color: rgba(43, 45, 49, 0.95);
+    width: 85%; /* Adjusted for all devices */
 }
 
 #game-over h1, #start-screen h1 {
@@ -80,10 +88,12 @@ body {
     margin-bottom: 15px;
 }
 
+/* Hidden Class */
 .hidden {
     display: none;
 }
 
+/* Button Styling */
 .btn {
     padding: 12px 24px;
     font-size: 18px;
@@ -94,38 +104,97 @@ body {
     cursor: pointer;
     transition: background 0.3s;
     margin-top: 15px;
+    box-shadow: 0 4px 10px rgba(97, 218, 251, 0.4);
 }
 
 .btn:hover {
     background-color: #ffd966;
 }
 
+/* Falling Animation */
 @keyframes fall {
     from { top: -20px; }
     to { top: 100%; }
 }
 
-/* Mobile Fullscreen */
+/* Responsive Adjustments */
+
+/* Smaller screens (phones) */
 @media (max-width: 600px) {
     .game {
         width: 100vw;
-        height: 100vh;
+        height: calc(100dvh - env(safe-area-inset-bottom)); /* Adjusts for Android navigation buttons */
         border-radius: 0;
-        border: none; /* Remove border to fit full screen */
+        border: none;
     }
-    #player, .food, .boom {
-        width: 30px;
-        height: 30px;
+    #player {
+        width: 35px;
+        height: 35px;
+        bottom: 30px; /* To ensure it's not hidden */
+    }
+    .food, .boom {
+        width: 25px;
+        height: 25px;
     }
     #score {
         font-size: 16px;
     }
     #game-over, #start-screen {
-        width: 90%; /* Better fit for smaller screens */
+        width: 90%;
         padding: 15px;
     }
     .btn {
         font-size: 16px;
         padding: 10px 20px;
+    }
+}
+
+/* Medium screens (tablets, small laptops) */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .game {
+        max-width: 600px;
+        height: 85vh;
+    }
+    #player {
+        width: 35px;
+        height: 35px;
+    }
+    .food, .boom {
+        width: 30px;
+        height: 30px;
+    }
+    #score {
+        font-size: 17px;
+    }
+    #game-over, #start-screen {
+        width: 85%;
+        padding: 18px;
+    }
+    .btn {
+        font-size: 17px;
+        padding: 11px 22px;
+    }
+}
+
+/* Large screens (desktops, large laptops) */
+@media (min-width: 1025px) {
+    .game {
+        max-width: 800px;
+        height: 75vh;
+    }
+    #player, .food, .boom {
+        width: 40px;
+        height: 40px;
+    }
+    #score {
+        font-size: 20px;
+    }
+    #game-over, #start-screen {
+        width: 70%;
+        padding: 20px;
+    }
+    .btn {
+        font-size: 18px;
+        padding: 12px 24px;
     }
 }

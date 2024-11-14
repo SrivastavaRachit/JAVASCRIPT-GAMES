@@ -53,6 +53,19 @@ function spawnObject() {
     checkCollision(obj, isFood);
 }
 
+function handleMove(event) {
+    const gameBounds = game.getBoundingClientRect();
+    let x = (event.touches ? event.touches[0].clientX : event.clientX) - gameBounds.left - player.offsetWidth / 2;
+    x = Math.max(0, Math.min(x, gameBounds.width - player.offsetWidth));
+
+    // Adjust player bottom position for mobile responsiveness
+    if (window.innerWidth <= 600) {
+        player.style.bottom = '30px'; // Ensure the player is not hidden by the navigation buttons
+    }
+    
+    player.style.left = `${x}px`;
+}
+
 // Check for collisions between player and food/bombs
 function checkCollision(obj, isFood) {
     const checkInterval = setInterval(() => {
