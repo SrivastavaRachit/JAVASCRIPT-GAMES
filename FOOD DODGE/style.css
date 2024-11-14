@@ -10,10 +10,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100dvh; /* Dynamic viewport height */
+    height: 100dvh;
+    /* Dynamic viewport height */
     font-family: 'Arial', sans-serif;
-    background: radial-gradient(circle, #1d1e22, #232526);
-    overflow: hidden; /* Prevents scrolling */
+    background: radial-gradient(circle at center, #121212, #1c1c1e);
+    overflow: hidden;
+    /* Prevents scrolling */
 }
 
 /* Game Container */
@@ -21,71 +23,83 @@ body {
     position: relative;
     width: 100%;
     max-width: 480px;
-    height: calc(100vh - env(safe-area-inset-bottom)); /* Adjusts for navigation buttons */
-    background: linear-gradient(135deg, #2b2d31, #3b3e44);
-    overflow: hidden;
+    height: calc(100vh - env(safe-area-inset-bottom));
+    background: linear-gradient(135deg, #25262a, #2f3136);
     border-radius: 15px;
-    border: 3px solid #f0f0f0;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
-    padding-bottom: env(safe-area-inset-bottom); /* Adds space for navigation buttons */
+    border: 3px solid #61dafb;
+    box-shadow: 0 0 40px rgba(97, 218, 251, 0.6), 0 0 20px rgba(0, 0, 0, 0.8);
+    overflow: hidden;
+    padding-bottom: env(safe-area-inset-bottom);
 }
 
-/* Player Styling */
+/* Neon-style Player Styling */
 #player {
     position: absolute;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     background-color: #61dafb;
     border-radius: 50%;
-    bottom: 10px;
+    bottom: 15px;
     left: 50%;
     transform: translateX(-50%);
-    transition: bottom 0.3s; /* Smooth adjustment for responsive design */
+    box-shadow: 0 0 15px #61dafb, 0 0 30px #61dafb;
+    transition: bottom 0.3s;
 }
 
 /* Food and Boom Styling */
-.food, .boom {
+.food,
+.boom {
     position: absolute;
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     background-size: cover;
     background-repeat: no-repeat;
-    animation: fall 3s linear infinite;
     border-radius: 50%;
+    animation: fall 3s linear infinite;
+    box-shadow: 0 0 10px #ff4747, 0 0 20px #ff4747;
 }
 
 /* Score Styling */
 #score {
     position: absolute;
-    top: 10px;
-    left: 10px;
-    color: #fff;
-    font-size: 18px;
+    top: 15px;
+    left: 15px;
+    color: #ffffff;
+    font-size: 20px;
     font-weight: bold;
+    text-shadow: 0 0 8px #61dafb;
 }
 
 /* Game Over and Start Screen */
-#game-over, #start-screen {
+#game-over,
+#start-screen {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    color: #fff;
+    color: #ffffff;
     padding: 20px;
-    border-radius: 10px;
-    background-color: rgba(43, 45, 49, 0.95);
-    width: 85%; /* Adjusted for all devices */
+    border-radius: 12px;
+    background: rgba(35, 37, 42, 0.95);
+    backdrop-filter: blur(10px);
+    width: 85%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
 }
 
-#game-over h1, #start-screen h1 {
-    font-size: 1.8rem;
+#game-over h1,
+#start-screen h1 {
+    font-size: 2rem;
     margin-bottom: 20px;
+    color: #ffeb3b;
+    text-shadow: 0 0 10px #ffeb3b;
 }
 
-#game-over p, #start-screen p {
-    font-size: 1.2rem;
+#game-over p,
+#start-screen p {
+    font-size: 1.4rem;
     margin-bottom: 15px;
+    color: #dddddd;
 }
 
 /* Hidden Class */
@@ -95,26 +109,32 @@ body {
 
 /* Button Styling */
 .btn {
-    padding: 12px 24px;
-    font-size: 18px;
+    padding: 14px 28px;
+    font-size: 20px;
     background-color: #61dafb;
-    color: #333;
+    color: #1d1e22;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 15px rgba(97, 218, 251, 0.6);
     margin-top: 15px;
-    box-shadow: 0 4px 10px rgba(97, 218, 251, 0.4);
 }
 
 .btn:hover {
     background-color: #ffd966;
+    box-shadow: 0 6px 20px rgba(255, 217, 102, 0.6);
 }
 
-/* Falling Animation */
+/* Advanced Neon Animation */
 @keyframes fall {
-    from { top: -20px; }
-    to { top: 100%; }
+    from {
+        top: -20px;
+    }
+
+    to {
+        top: 100%;
+    }
 }
 
 /* Responsive Adjustments */
@@ -123,29 +143,35 @@ body {
 @media (max-width: 600px) {
     .game {
         width: 100vw;
-        height: calc(100dvh - env(safe-area-inset-bottom)); /* Adjusts for Android navigation buttons */
+        height: calc(100dvh - env(safe-area-inset-bottom));
         border-radius: 0;
         border: none;
     }
+
     #player {
-        width: 35px;
-        height: 35px;
-        bottom: 30px; /* To ensure it's not hidden */
+        width: 40px;
+        height: 40px;
     }
-    .food, .boom {
-        width: 25px;
-        height: 25px;
+
+    .food,
+    .boom {
+        width: 30px;
+        height: 30px;
     }
+
     #score {
-        font-size: 16px;
+        font-size: 18px;
     }
-    #game-over, #start-screen {
+
+    #game-over,
+    #start-screen {
         width: 90%;
-        padding: 15px;
+        padding: 18px;
     }
+
     .btn {
-        font-size: 16px;
-        padding: 10px 20px;
+        font-size: 18px;
+        padding: 12px 24px;
     }
 }
 
@@ -155,24 +181,31 @@ body {
         max-width: 600px;
         height: 85vh;
     }
+
     #player {
+        width: 45px;
+        height: 45px;
+    }
+
+    .food,
+    .boom {
         width: 35px;
         height: 35px;
     }
-    .food, .boom {
-        width: 30px;
-        height: 30px;
-    }
+
     #score {
-        font-size: 17px;
+        font-size: 19px;
     }
-    #game-over, #start-screen {
+
+    #game-over,
+    #start-screen {
         width: 85%;
-        padding: 18px;
+        padding: 20px;
     }
+
     .btn {
-        font-size: 17px;
-        padding: 11px 22px;
+        font-size: 19px;
+        padding: 14px 26px;
     }
 }
 
@@ -182,19 +215,26 @@ body {
         max-width: 800px;
         height: 75vh;
     }
-    #player, .food, .boom {
-        width: 40px;
-        height: 40px;
+
+    #player,
+    .food,
+    .boom {
+        width: 50px;
+        height: 50px;
     }
+
     #score {
-        font-size: 20px;
+        font-size: 22px;
     }
-    #game-over, #start-screen {
+
+    #game-over,
+    #start-screen {
         width: 70%;
-        padding: 20px;
+        padding: 22px;
     }
+
     .btn {
-        font-size: 18px;
-        padding: 12px 24px;
+        font-size: 20px;
+        padding: 14px 28px;
     }
 }
