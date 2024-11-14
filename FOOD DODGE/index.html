@@ -1,0 +1,31 @@
+<!-- HTML - index.html -->
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Dodger</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.min.js"></script>
+</head>
+<body>
+    <div id="start-screen" class="start-screen">
+        <h1>Food Dodger</h1>
+        <p>Move left or right to collect food. Avoid bombs!</p>
+        <button onclick="startGame()" class="btn">Start Game</button>
+    </div>
+
+    <div class="game hidden">
+        <div id="player"></div>
+        <div id="score">Food: 0 | Best: 0 | Level: 1</div>
+        <div id="game-over" class="hidden">
+            <h1>Game Over</h1>
+            <p>You collected <span id="final-score">0</span> food.</p>
+            <p id="new-best-score-message" class="hidden">New Best Score!</p>
+            <button onclick="restartGame()" class="btn">Restart</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
