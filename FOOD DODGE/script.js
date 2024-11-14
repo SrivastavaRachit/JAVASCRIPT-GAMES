@@ -15,7 +15,7 @@ let spawnInterval;
 let isGameOver = false;
 
 const foodIcons = ["assets/food1.png", "assets/food2.png", "assets/food3.png", "assets/food4.png", "assets/food5.png"];
-const boomIcon = "assets/bomb.png";
+const boomIcon = "assets/Bomb.png";
 const foodSound = new Audio("assets/eat.mp3");
 const boomSound = new Audio("assets/blast.mp3");
 const levelUpSound = new Audio("assets/levelpass.mp3");
